@@ -32,8 +32,10 @@ class ProductionConfig(Config):
     """正式環境設定"""
 
     DEBUG = False
-    # 正式環境使用 PostgreSQL (Zeabur 自動注入)
-    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
+    # 正式環境使用 PostgreSQL (Zeabur 使用 POSTGRES_URI)
+    SQLALCHEMY_DATABASE_URI = os.environ.get("POSTGRES_URI") or os.environ.get(
+        "POSTGRES_CONNECTION_STRING"
+    )
 
     # 處理 Heroku/Zeabur 的 postgres:// URL 格式
     if SQLALCHEMY_DATABASE_URI and SQLALCHEMY_DATABASE_URI.startswith("postgres://"):
