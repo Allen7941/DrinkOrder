@@ -35,8 +35,14 @@ def create_app(config_name=None):
     app.register_blueprint(api_bp, url_prefix="/api")
     app.register_blueprint(admin_bp, url_prefix="/admin")
 
-    # 建立資料庫表格 (開發環境)
+    # 建立資料庫表格
     with app.app_context():
         db.create_all()
 
     return app
+
+
+# 為 WSGI 伺服器 (Gunicorn) 提供 app 實例
+# 開發時使用 `flask run`，會自動呼叫 create_app()
+# 生產環境使用 `gunicorn app:app`，會使用這個預先建立的實例
+app = create_app()

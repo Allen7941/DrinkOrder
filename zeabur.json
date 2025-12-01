@@ -4,10 +4,9 @@
         "type": "python"
     },
     "start": {
-        "command": "flask run --host=0.0.0.0 --port=$PORT"
+        "command": "gunicorn app:app --bind 0.0.0.0:$PORT"
     },
     "env": {
-        "FLASK_APP": "app",
         "FLASK_ENV": "production"
     }
 }
