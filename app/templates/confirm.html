@@ -1,0 +1,89 @@
+﻿{% extends "base.html" %}
+
+{% block title %}訂單確認 - 狸克飲料舖{% endblock %}
+
+{% block content %}
+<div class="card" style="text-align: center;">
+    <div style="font-size: 5rem; margin-bottom: 20px;">🎉</div>
+    <h1 style="color: var(--wood-color); margin-bottom: 20px;">訂單已成功送出！</h1>
+    <p style="font-size: 1.2rem; color: var(--text-color);">
+        感謝您的訂購～請耐心等待飲料送達喔！
+    </p>
+</div>
+
+<div class="card">
+    <h2 class="card-title">📋 訂單明細</h2>
+    <div id="order-details">
+        <div class="loading">
+            <div class="loading-spinner"></div>
+        </div>
+    </div>
+</div>
+
+<div style="text-align: center; margin-top: 30px;">
+    <a href="/" class="btn btn-primary" style="font-size: 1.1rem; padding: 12px 30px;">
+        🏠 回首頁
+    </a>
+    <a href="/order" class="btn btn-secondary" style="font-size: 1.1rem; padding: 12px 30px;">
+        🛒 繼續訂購
+    </a>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const orderData = sessionStorage.getItem('lastOrder');
+        const container = document.getElementById('order-details');
+
+        if (orderData) {
+            const order = JSON.parse(orderData);
+            container.innerHTML = `
+            <table class="table">
+                <tr>
+                    <td><strong>訂單編號</strong></td>
+                    <td>${order.order_id}</td>
+                </tr>
+                <tr>
+                    <td><strong>訂購人</strong></td>
+                    <td>${order.customer_name}</td>
+                </tr>
+                ${order.department ? `<tr><td><strong>部門</strong></td><td>${order.department}</td></tr>` : ''}
+                <tr>
+                    <td><strong>飲料店</strong></td>
+                    <td>${order.shop_name}</td>
+                </tr>
+                <tr>
+                    <td><strong>飲料</strong></td>
+                    <td>${order.drink_name}</td>
+                </tr>
+                <tr>
+                    <td><strong>杯型</strong></td>
+                    <td>${order.size}</td>
+                </tr>
+                <tr>
+                    <td><strong>甜度</strong></td>
+                    <td>${order.sugar}</td>
+                </tr>
+                <tr>
+                    <td><strong>冰塊</strong></td>
+                    <td>${order.ice}</td>
+                </tr>
+                ${order.toppings && order.toppings.length > 0 ? `<tr><td><strong>加料</strong></td><td>${order.toppings.join(', ')}</td></tr>` : ''}
+                <tr>
+                    <td><strong>數量</strong></td>
+                    <td>${order.quantity} 杯</td>
+                </tr>
+                ${order.note ? `<tr><td><strong>備註</strong></td><td>${order.note}</td></tr>` : ''}
+            </table>
+            <div class="order-total">
+                總計: ${formatCurrency(order.total_price)}
+            </div>
+        `;
+
+            // 清除暫存
+            sessionStorage.removeItem('lastOrder');
+        } else {
+            container.innerHTML = '<p>無訂單資料</p>';
+        }
+    });
+</script>
+{% endblock %}

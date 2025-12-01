@@ -1,0 +1,524 @@
+﻿/* 動物森友會風格 - 飲料訂購系統樣式 */
+
+/* ========== 變數定義 ========== */
+:root {
+    /* 配色方案 */
+    --primary-color: #7FCFB5;
+    /* 薄荷綠 */
+    --secondary-color: #F5E6C8;
+    /* 奶油黃 */
+    --accent-color: #FFB7C5;
+    /* 櫻花粉 */
+    --wood-color: #8B6914;
+    /* 木質棕 */
+    --sky-color: #87CEEB;
+    /* 天空藍 */
+    --text-color: #5D4E37;
+    /* 文字色 */
+    --white: #FFFEF7;
+    /* 米白色 */
+    --shadow: rgba(93, 78, 55, 0.15);
+
+    /* 字型 */
+    --font-title: 'Noto Sans TC', 'jf-openhuninn', sans-serif;
+    --font-body: 'Noto Sans TC', sans-serif;
+
+    /* 圓角 */
+    --border-radius: 15px;
+    --border-radius-lg: 20px;
+}
+
+/* ========== 全域樣式 ========== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    background: linear-gradient(180deg, var(--sky-color) 0%, var(--primary-color) 50%, var(--secondary-color) 100%);
+    min-height: 100vh;
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+/* ========== 容器 ========== */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* ========== 頁首 ========== */
+header {
+    background: var(--white);
+    border-radius: 0 0 var(--border-radius-lg) var(--border-radius-lg);
+    box-shadow: 0 4px 15px var(--shadow);
+    padding: 20px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.logo {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--wood-color);
+    font-family: var(--font-title);
+}
+
+.logo-icon {
+    font-size: 2.5rem;
+    margin-right: 10px;
+}
+
+/* ========== 導覽列 ========== */
+nav {
+    background: var(--secondary-color);
+    border-radius: var(--border-radius);
+    padding: 15px;
+    margin-top: 15px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+nav a {
+    color: var(--text-color);
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: var(--border-radius);
+    background: var(--white);
+    transition: all 0.3s ease;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+nav a:hover {
+    background: var(--primary-color);
+    color: var(--white);
+    transform: translateY(-2px);
+}
+
+/* ========== 卡片樣式 ========== */
+.card {
+    background: var(--white);
+    border-radius: var(--border-radius-lg);
+    box-shadow: 0 4px 15px var(--shadow);
+    padding: 25px;
+    margin-bottom: 20px;
+}
+
+.card-title {
+    font-size: 1.5rem;
+    color: var(--wood-color);
+    margin-bottom: 15px;
+    font-family: var(--font-title);
+    border-bottom: 3px solid var(--primary-color);
+    padding-bottom: 10px;
+}
+
+/* ========== 按鈕樣式 ========== */
+.btn {
+    padding: 12px 25px;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-primary {
+    background: var(--primary-color);
+    color: var(--white);
+}
+
+.btn-primary:hover {
+    background: #6BB99D;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px var(--shadow);
+}
+
+.btn-secondary {
+    background: var(--secondary-color);
+    color: var(--text-color);
+}
+
+.btn-secondary:hover {
+    background: #E8D9B5;
+    transform: translateY(-2px);
+}
+
+.btn-accent {
+    background: var(--accent-color);
+    color: var(--text-color);
+}
+
+.btn-accent:hover {
+    background: #FF9EB1;
+    transform: translateY(-2px);
+}
+
+/* ========== 表單樣式 ========== */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--wood-color);
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid var(--secondary-color);
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+    background: var(--white);
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+select.form-control {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%235D4E37' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    padding-right: 40px;
+}
+
+/* ========== 表格樣式 ========== */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.table th,
+.table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--secondary-color);
+}
+
+.table th {
+    background: var(--secondary-color);
+    color: var(--wood-color);
+    font-weight: 600;
+}
+
+.table tr:hover {
+    background: rgba(127, 207, 181, 0.1);
+}
+
+/* ========== 菜單網格 ========== */
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.menu-item {
+    background: var(--white);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    box-shadow: 0 3px 10px var(--shadow);
+    transition: transform 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.menu-item:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary-color);
+}
+
+.menu-item-name {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--wood-color);
+    margin-bottom: 8px;
+}
+
+.menu-item-price {
+    color: var(--primary-color);
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.menu-item-category {
+    display: inline-block;
+    background: var(--accent-color);
+    color: var(--text-color);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    margin-bottom: 10px;
+}
+
+/* ========== 對話框樣式 ========== */
+.dialog {
+    background: var(--white);
+    border-radius: var(--border-radius-lg);
+    border: 4px solid var(--wood-color);
+    padding: 25px;
+    position: relative;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.dialog::before {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 30px;
+    border-width: 15px 15px 0;
+    border-style: solid;
+    border-color: var(--wood-color) transparent transparent;
+}
+
+/* ========== 提示訊息 ========== */
+.alert {
+    padding: 15px 20px;
+    border-radius: var(--border-radius);
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.alert-success {
+    background: rgba(127, 207, 181, 0.3);
+    border: 2px solid var(--primary-color);
+    color: #2D6A4F;
+}
+
+.alert-error {
+    background: rgba(255, 183, 197, 0.3);
+    border: 2px solid var(--accent-color);
+    color: #C94C4C;
+}
+
+.alert-info {
+    background: rgba(135, 206, 235, 0.3);
+    border: 2px solid var(--sky-color);
+    color: #2C6F93;
+}
+
+/* ========== 訂單摘要 ========== */
+.order-summary {
+    background: var(--secondary-color);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.order-total {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--wood-color);
+    text-align: right;
+    padding-top: 15px;
+    border-top: 2px dashed var(--wood-color);
+    margin-top: 15px;
+}
+
+/* ========== 裝飾元素 ========== */
+.decoration {
+    position: fixed;
+    pointer-events: none;
+    opacity: 0.6;
+    z-index: -1;
+}
+
+.leaf-1 {
+    top: 10%;
+    left: 5%;
+    font-size: 3rem;
+    animation: float 4s ease-in-out infinite;
+}
+
+.leaf-2 {
+    top: 30%;
+    right: 8%;
+    font-size: 2.5rem;
+    animation: float 5s ease-in-out infinite 1s;
+}
+
+.flower-1 {
+    bottom: 20%;
+    left: 10%;
+    font-size: 2rem;
+    animation: float 6s ease-in-out infinite 0.5s;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-20px) rotate(10deg);
+    }
+}
+
+/* ========== 響應式設計 ========== */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav a {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .menu-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .table {
+        font-size: 0.9rem;
+    }
+
+    .table th,
+    .table td {
+        padding: 8px 10px;
+    }
+}
+
+/* ========== 頁尾 ========== */
+footer {
+    text-align: center;
+    padding: 20px;
+    color: var(--text-color);
+    margin-top: 40px;
+}
+
+footer a {
+    color: var(--wood-color);
+    text-decoration: none;
+}
+
+/* ========== 載入動畫 ========== */
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid var(--secondary-color);
+    border-top-color: var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ========== 選項按鈕組 ========== */
+.option-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.option-btn {
+    padding: 10px 18px;
+    border: 2px solid var(--secondary-color);
+    border-radius: var(--border-radius);
+    background: var(--white);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.option-btn:hover {
+    border-color: var(--primary-color);
+}
+
+.option-btn.active {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    color: var(--white);
+}
+
+/* ========== Checkbox 樣式 ========== */
+.checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.checkbox-item input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    accent-color: var(--primary-color);
+}
+
+/* ========== 數量選擇器 ========== */
+.quantity-selector {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.quantity-btn {
+    width: 40px;
+    height: 40px;
+    border: 2px solid var(--secondary-color);
+    border-radius: 50%;
+    background: var(--white);
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.quantity-btn:hover {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    color: var(--white);
+}
+
+.quantity-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--wood-color);
+    min-width: 40px;
+    text-align: center;
+}

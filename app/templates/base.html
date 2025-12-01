@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}飲料訂購系統{% endblock %} 🍵</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    {% block extra_css %}{% endblock %}
+</head>
+
+<body>
+    <!-- 裝飾元素 -->
+    <div class="decoration leaf-1">🍃</div>
+    <div class="decoration leaf-2">🌿</div>
+    <div class="decoration flower-1">🌸</div>
+
+    <div class="container">
+        <header>
+            <div class="logo">
+                <span class="logo-icon">🦝</span>
+                <span>狸克飲料舖</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="/">🏠 首頁</a></li>
+                    <li><a href="/menu">📋 菜單</a></li>
+                    <li><a href="/order">🛒 訂購</a></li>
+                    <li><a href="/admin/events">🎉 團購管理</a></li>
+                    <li><a href="/admin/orders">📊 訂單彙總</a></li>
+                    <li><a href="/admin/shops">🏪 店家管理</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+
+        <footer>
+            <p>🍃 狸克飲料舖 © 2025 | 動物森友會風格飲料訂購系統</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+
+</html>

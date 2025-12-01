@@ -1,0 +1,36 @@
+﻿{% extends "base.html" %}
+
+{% block title %}菜單 - 狸克飲料舖{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2 class="card-title">📋 飲料菜單</h2>
+
+    <div class="form-group">
+        <label for="shop-select">選擇飲料店</label>
+        <select id="shop-select" class="form-control">
+            <option value="">請選擇飲料店</option>
+        </select>
+    </div>
+</div>
+
+<div id="menu-container">
+    <div class="card">
+        <p style="text-align: center; padding: 40px;">
+            👆 請先選擇飲料店查看菜單
+        </p>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        loadShops('shop-select');
+
+        document.getElementById('shop-select').addEventListener('change', (e) => {
+            if (e.target.value) {
+                loadMenu(e.target.value, 'menu-container');
+            }
+        });
+    });
+</script>
+{% endblock %}

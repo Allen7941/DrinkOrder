@@ -1,0 +1,132 @@
+﻿{% extends "base.html" %}
+
+{% block title %}匯入菜單 - 狸克飲料舖{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2 class="card-title">📥 匯入菜單</h2>
+    <p>店家編號: {{ shop_id }}</p>
+
+    <div class="form-group">
+        <label>選擇匯入方式</label>
+        <div class="option-group">
+            <button type="button" class="option-btn active" onclick="showImportType('json')">JSON 格式</button>
+            <button type="button" class="option-btn" onclick="showImportType('manual')">手動新增</button>
+        </div>
+    </div>
+
+    <div id="json-import">
+        <div class="form-group">
+            <label for="menu-json">JSON 資料</label>
+            <textarea id="menu-json" class="form-control" rows="10" placeholder='{"items": [{"name": "珍珠奶茶", "category": "茶類", "price_m": 45, "price_l": 55}]}'></textarea>
+        </div>
+        <button type="button" class="btn btn-primary" onclick="importMenuJson()">
+            📥 匯入菜單
+        </button>
+    </div>
+
+    <div id="manual-import" style="display: none;">
+        <div class="form-group">
+            <label for="item-name">飲料名稱 *</label>
+            <input type="text" id="item-name" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="item-category">分類</label>
+            <select id="item-category" class="form-control">
+                <option value="茶類">茶類</option>
+                <option value="咖啡">咖啡</option>
+                <option value="果汁">果汁</option>
+                <option value="特調">特調</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="item-price-m">M 杯價格</label>
+            <input type="number" id="item-price-m" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="item-price-l">L 杯價格</label>
+            <input type="number" id="item-price-l" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="item-desc">描述</label>
+            <input type="text" id="item-desc" class="form-control">
+        </div>
+        <button type="button" class="btn btn-primary" onclick="addMenuItem()">
+            ➕ 新增品項
+        </button>
+    </div>
+</div>
+
+<div class="card">
+    <h2 class="card-title">📋 目前菜單</h2>
+    <div id="current-menu">
+        <div class="loading">
+            <div class="loading-spinner"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const shopId = '{{ shop_id }}';
+
+    function showImportType(type) {
+        document.getElementById('json-import').style.display = type === 'json' ? 'block' : 'none';
+        document.getElementById('manual-import').style.display = type === 'manual' ? 'block' : 'none';
+    }
+
+    async function importMenuJson() {
+        const jsonText = document.getElementById('menu-json').value;
+        try {
+            const data = JSON.parse(jsonText);
+            const result = await api.post(`/api/shops/${shopId}/import-menu`, data);
+            if (result.success) {
+                showAlert(result.message, 'success');
+                loadCurrentMenu();
+            } else {
+                showAlert(result.message || '匯入失敗', 'error');
+            }
+        } catch (e) {
+            showAlert('JSON 格式錯誤', 'error');
+        }
+    }
+
+    async function addMenuItem() {
+        const data = {
+            items: [{
+                name: document.getElementById('item-name').value,
+                category: document.getElementById('item-category').value,
+                price_m: parseInt(document.getElementById('item-price-m').value) || 0,
+                price_l: parseInt(document.getElementById('item-price-l').value) || 0,
+                description: document.getElementById('item-desc').value
+            }]
+        };
+
+        const result = await api.post(`/api/shops/${shopId}/import-menu`, data);
+        if (result.success) {
+            showAlert('品項新增成功', 'success');
+            loadCurrentMenu();
+        }
+    }
+
+    async function loadCurrentMenu() {
+        const container = document.getElementById('current-menu');
+        try {
+            const result = await api.get(`/api/shops/${shopId}/menu`);
+            if (result.success && result.data.length > 0) {
+                let html = '<table class="table"><thead><tr><th>名稱</th><th>分類</th><th>M價格</th><th>L價格</th></tr></thead><tbody>';
+                result.data.forEach(item => {
+                    html += `<tr><td>${item.name}</td><td>${item.category}</td><td>$${item.price_m}</td><td>$${item.price_l}</td></tr>`;
+                });
+                html += '</tbody></table>';
+                container.innerHTML = html;
+            } else {
+                container.innerHTML = '<p>尚無菜單資料</p>';
+            }
+        } catch (e) {
+            container.innerHTML = '<p>載入失敗</p>';
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', loadCurrentMenu);
+</script>
+{% endblock %}

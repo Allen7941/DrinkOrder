@@ -1,0 +1,95 @@
+﻿{% extends "base.html" %}
+
+{% block title %}首頁 - 狸克飲料舖{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div style="text-align: center; padding: 40px 20px;">
+        <h1 style="font-size: 3rem; color: var(--wood-color); margin-bottom: 20px;">
+            🦝 歡迎光臨狸克飲料舖！
+        </h1>
+        <p style="font-size: 1.3rem; color: var(--text-color); margin-bottom: 30px;">
+            嗨～歡迎來到我們的飲料訂購系統！<br>
+            這裡有各種美味的飲料等著你喔～ 🍵☕🧋
+        </p>
+
+        <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 30px;">
+            <a href="/order" class="btn btn-primary" style="font-size: 1.2rem; padding: 15px 40px;">
+                🛒 開始訂購
+            </a>
+            <a href="/menu" class="btn btn-secondary" style="font-size: 1.2rem; padding: 15px 40px;">
+                📋 查看菜單
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <h2 class="card-title">🎉 進行中的團購</h2>
+    <div id="active-events">
+        <div class="loading">
+            <div class="loading-spinner"></div>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <h2 class="card-title">✨ 今日推薦</h2>
+    <div class="menu-grid">
+        <div class="menu-item">
+            <span class="menu-item-category">茶類</span>
+            <div class="menu-item-name">🧋 珍珠奶茶</div>
+            <div class="menu-item-price">M: $45 / L: $55</div>
+            <p>經典不敗的好味道</p>
+        </div>
+        <div class="menu-item">
+            <span class="menu-item-category">咖啡</span>
+            <div class="menu-item-name">☕ 拿鐵咖啡</div>
+            <div class="menu-item-price">M: $55 / L: $65</div>
+            <p>香濃咖啡搭配鮮奶</p>
+        </div>
+        <div class="menu-item">
+            <span class="menu-item-category">特調</span>
+            <div class="menu-item-name">🥤 百香果多多</div>
+            <div class="menu-item-price">M: $50 / L: $60</div>
+            <p>酸甜好滋味</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    // 載入進行中的團購活動
+    async function loadActiveEvents() {
+        const container = document.getElementById('active-events');
+        try {
+            const result = await api.get('/api/events?status=進行中');
+            if (result.success && result.data.length > 0) {
+                let html = '<div class="menu-grid">';
+                result.data.forEach(event => {
+                    html += `
+                    <div class="menu-item">
+                        <span class="menu-item-category">團購中</span>
+                        <div class="menu-item-name">🏪 ${event.shop_name}</div>
+                        <p>發起人: ${event.created_by || '未知'}</p>
+                        ${event.deadline ? `<p>截止: ${formatDateTime(event.deadline)}</p>` : ''}
+                        <p>已有 ${event.total_orders} 筆訂單</p>
+                        <a href="/order?event_id=${event.event_id}" class="btn btn-primary" style="margin-top: 10px;">
+                            參加團購
+                        </a>
+                    </div>
+                `;
+                });
+                html += '</div>';
+                container.innerHTML = html;
+            } else {
+                container.innerHTML = '<p style="text-align: center; color: var(--text-color);">目前沒有進行中的團購活動 🍃</p>';
+            }
+        } catch (error) {
+            console.error('載入團購活動失敗:', error);
+            container.innerHTML = '<p>載入失敗</p>';
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', loadActiveEvents);
+</script>
+{% endblock %}

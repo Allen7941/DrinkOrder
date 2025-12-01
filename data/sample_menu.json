@@ -1,0 +1,123 @@
+﻿{
+    "items": [
+        {
+            "name": "珍珠奶茶",
+            "category": "茶類",
+            "price_m": 45,
+            "price_l": 55,
+            "description": "經典不敗的好味道"
+        },
+        {
+            "name": "紅茶拿鐵",
+            "category": "茶類",
+            "price_m": 50,
+            "price_l": 60,
+            "description": "香濃紅茶搭配鮮奶"
+        },
+        {
+            "name": "四季春茶",
+            "category": "茶類",
+            "price_m": 30,
+            "price_l": 40,
+            "description": "清新茶香"
+        },
+        {
+            "name": "烏龍綠茶",
+            "category": "茶類",
+            "price_m": 35,
+            "price_l": 45,
+            "description": "烏龍與綠茶的完美結合"
+        },
+        {
+            "name": "冬瓜茶",
+            "category": "茶類",
+            "price_m": 30,
+            "price_l": 40,
+            "description": "古早味冬瓜茶"
+        },
+        {
+            "name": "美式咖啡",
+            "category": "咖啡",
+            "price_m": 45,
+            "price_l": 55,
+            "description": "純粹咖啡香"
+        },
+        {
+            "name": "拿鐵咖啡",
+            "category": "咖啡",
+            "price_m": 55,
+            "price_l": 65,
+            "description": "香濃咖啡搭配鮮奶"
+        },
+        {
+            "name": "摩卡咖啡",
+            "category": "咖啡",
+            "price_m": 60,
+            "price_l": 70,
+            "description": "巧克力與咖啡的完美邂逅"
+        },
+        {
+            "name": "焦糖瑪奇朵",
+            "category": "咖啡",
+            "price_m": 65,
+            "price_l": 75,
+            "description": "焦糖香氣瀰漫"
+        },
+        {
+            "name": "新鮮柳橙汁",
+            "category": "果汁",
+            "price_m": 55,
+            "price_l": 65,
+            "description": "現榨新鮮柳橙"
+        },
+        {
+            "name": "芒果冰沙",
+            "category": "果汁",
+            "price_m": 60,
+            "price_l": 70,
+            "description": "香甜芒果冰沙"
+        },
+        {
+            "name": "西瓜汁",
+            "category": "果汁",
+            "price_m": 50,
+            "price_l": 60,
+            "description": "夏日清涼西瓜汁"
+        },
+        {
+            "name": "蘋果汁",
+            "category": "果汁",
+            "price_m": 50,
+            "price_l": 60,
+            "description": "新鮮蘋果榨汁"
+        },
+        {
+            "name": "百香果多多",
+            "category": "特調",
+            "price_m": 50,
+            "price_l": 60,
+            "description": "酸甜好滋味"
+        },
+        {
+            "name": "葡萄柚綠茶",
+            "category": "特調",
+            "price_m": 50,
+            "price_l": 60,
+            "description": "清爽葡萄柚搭配綠茶"
+        },
+        {
+            "name": "芒果青茶",
+            "category": "特調",
+            "price_m": 55,
+            "price_l": 65,
+            "description": "芒果與青茶的完美結合"
+        },
+        {
+            "name": "草莓奶霜",
+            "category": "特調",
+            "price_m": 65,
+            "price_l": 75,
+            "description": "草莓搭配濃郁奶霜"
+        }
+    ]
+}
